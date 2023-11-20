@@ -2,11 +2,13 @@
 
 namespace App\Http\Requests\Auth;
 
-use Illuminate\Auth\Events\Lockout;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
+use Illuminate\Auth\Events\Lockout;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
@@ -27,7 +29,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'loginname' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -41,15 +43,31 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        // if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        //     RateLimiter::hit($this->throttleKey());
 
-            throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
-            ]);
-        }
+        //     throw ValidationException::withMessages([
+        //         'email' => trans('auth.failed'),
+        //     ]);
+        // }
 
-        RateLimiter::clear($this->throttleKey());
+        //Database Query:
+            $user=User::Where('email',$this->loginname)
+                 ->orWhere('name',$this->loginname)
+                ->orWhere('phone',$this->loginname)->first();
+
+        //Authentication Check:
+            if(!$user || !Hash::check($this->password,$user->password)){
+                    throw ValidationException::withMessages([
+                        'loginname' => trans('auth.failed'),
+                    ]);
+            }
+        //User Login:
+                   Auth::login($user,$this->boolean('remember'));
+        //Rate Limiting: limt number of login attempts
+
+
+                   RateLimiter::clear($this->throttleKey());
     }
 
     /**

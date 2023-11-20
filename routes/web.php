@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,26 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
+Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard')
+->middleware('auth')
+->middleware('roles:admin');
+
+Route::get('/admin/logout',[AdminController::class,'AdminLogout'])->name('admin.logout')
+->middleware('auth')->middleware('roles:admin');
+
+Route::get('/admin/profile',[AdminController::class,'AdminProfile'])->name('admin.profile')
+->middleware('auth')->middleware('roles:admin');
+
+Route::post('/admin/profile/store',[AdminController::class,'AdminProfileStore'])->name('admin.profile.store')
+->middleware('auth')->middleware('roles:admin');
+
+Route::post('/admin/password/update',[AdminController::class,'AdminPasswordUpdate'])->name('admin.password.update')
+->middleware('auth')->middleware('roles:admin');
+
+Route::get('/admin/change/password',[AdminController::class,'AdminPasswordChange'])->name('admin.change.password')
+->middleware('auth')->middleware('roles:admin');
+
+Route::get('/admin/login',[AdminController::class,'adminLogin'])->name('admin.login');
