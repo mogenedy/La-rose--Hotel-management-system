@@ -28,8 +28,8 @@ class AdminController extends Controller
 
     public function AdminProfile(){
         $id=Auth::user()->id; //check our uer is logged or not
-        $ProfileData=User::find($id); //get user data
-        return view('admin.admin_profile_view',compact('ProfileData')); //pass data to view
+        $profileData=User::find($id); //get user data
+        return view('admin.admin_profile_view',compact('profileData')); //pass data to view
     }
 
     public function AdminProfileStore(Request $request){
@@ -94,4 +94,3 @@ class AdminController extends Controller
     }
 
 }
-
