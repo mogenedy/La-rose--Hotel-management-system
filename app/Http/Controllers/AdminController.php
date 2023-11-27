@@ -76,7 +76,7 @@ class AdminController extends Controller
                 'message'=>'Old password does not match',
                 'alert-type'=>'error'
              );
-            return back()->with('$notification');
+            return back()->with($notification);
         }
                 //update new password
                 User::whereId(Auth::user()->id)->update([
@@ -86,7 +86,7 @@ class AdminController extends Controller
                     'message'=>'password has changed',
                     'alert-type'=>'success'
                  );
-                return back()->with('$notification');
+                return back()->with($notification);
 
 
 

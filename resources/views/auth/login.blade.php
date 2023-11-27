@@ -45,9 +45,6 @@
                         <div class="form-group">
                             <input class="form-control" type="password" name="password" placeholder="password" >
                             <x-input-error :messages="$errors->get('password')" class="mt-2 text-red-500 font-bold" style="background-color: #ffeeee;  color:red;" />
-                                {{-- @error('password')
-                            <span class="text-danger">{{$message}}</span>
-                             @enderror --}}
                             </div>
                     </div>
 

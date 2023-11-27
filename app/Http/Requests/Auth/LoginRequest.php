@@ -64,6 +64,8 @@ class LoginRequest extends FormRequest
             }
         //User Login:
                    Auth::login($user,$this->boolean('remember'));
+
+                   
         //Rate Limiting: limt number of login attempts
 
 

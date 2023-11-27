@@ -1,93 +1,125 @@
 @extends('frontend.main_master')
 @section('main')
-
-
-        <!-- Inner Banner -->
-        <div class="inner-banner inner-bg6">
-            <div class="container">
-                <div class="inner-title">
-                    <ul>
-                        <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li><i class='bx bx-chevron-right'></i></li>
-                        <li>User Dashboard </li>
-                    </ul>
-                    <h3>User Dashboard</h3>
-                </div>
+    <!-- Inner Banner -->
+    <div class="inner-banner inner-bg6">
+        <div class="container">
+            <div class="inner-title">
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li><i class='bx bx-chevron-right'></i></li>
+                    <li>User Dashboard </li>
+                </ul>
+                <h3>User Dashboard</h3>
             </div>
         </div>
-        <!-- Inner Banner End -->
+    </div>
+    <!-- Inner Banner End -->
 
-        <!-- Service Details Area -->
-        <div class="service-details-area pt-100 pb-70">
-            <div class="container">
-                <div class="row">
-                     <div class="col-lg-3">
+    <!-- Service Details Area -->
+    <div class="service-details-area pt-100 pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
 
-                        @include('frontend.dashboard.user_menu')
+
+                    <div class="service-side-bar">
+                        <div class="services-bar-widget">
+                            <h3 class="title">Others Services</h3>
+                            <div class="side-bar-categories">
+
+                                <img src="{{ url('upload/user_images/' .Auth::user()->photo) }}"
+                                    class="rounded mx-auto d-block" alt="Image" style="width:100px; height:100px;">
+                                <br><br>
+                                <center>
+                                    <p>{{ Auth::user()->name }}</p>
+                                    <p>{{ Auth::user()->email }}</p>
+                                </center>
+                                <ul>
+
+                                    <li>
+                                        <a href="{{ route('dashboard') }}">User Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('user.profile') }}">User Profile </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('user.change.password') }}">Change Password</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Booking Details </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('user.logout') }}">Logout </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
                     </div>
 
-
-                    <div class="col-lg-9">
-                        <div class="service-article">
+                </div>
 
 
-                            <div class="service-article-title">
-                                <h2>User Dashboard </h2>
-                            </div>
+                <div class="col-lg-9">
+                    <div class="service-article">
 
-                            <div class="service-article-content">
+
+                        <div class="service-article-title">
+                            <h2>User Dashboard </h2>
+                        </div>
+
+                        <div class="service-article-content">
                             <div class="row">
 
-        <div class="col-md-4">
-<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-  <div class="card-header">Total Booking</div>
-  <div class="card-body">
-   <h1 class="card-title" style="font-size: 45px;">3 Total</h1>
+                                <div class="col-md-4">
+                                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                                        <div class="card-header">Total Booking</div>
+                                        <div class="card-body">
+                                            <h1 class="card-title" style="font-size: 45px;">3 Total</h1>
 
-  </div>
-</div>
-         </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-             <div class="col-md-4">
-<div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-  <div class="card-header">Pending Booking </div>
-  <div class="card-body">
-    <h1 class="card-title" style="font-size: 45px;">3 Pending</h1>
+                                <div class="col-md-4">
+                                    <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+                                        <div class="card-header">Pending Booking </div>
+                                        <div class="card-body">
+                                            <h1 class="card-title" style="font-size: 45px;">3 Pending</h1>
 
-  </div>
-</div>
-         </div>
-
-
-             <div class="col-md-4">
-<div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-  <div class="card-header">Complete Booking</div>
-  <div class="card-body">
-    <h1 class="card-title" style="font-size: 45px;">3 Complete</h1>
-
-  </div>
-</div>
-         </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 
+                                <div class="col-md-4">
+                                    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                                        <div class="card-header">Complete Booking</div>
+                                        <div class="card-body">
+                                            <h1 class="card-title" style="font-size: 45px;">3 Complete</h1>
+
+                                        </div>
+                                    </div>
+                                </div>
 
 
 
-                            </div>
+
 
                             </div>
-
 
                         </div>
+
+
                     </div>
-
-
                 </div>
+
+
             </div>
         </div>
-        <!-- Service Details Area End -->
-
-
+    </div>
+    <!-- Service Details Area End -->
 @endsection
