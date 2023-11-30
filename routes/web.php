@@ -1,10 +1,11 @@
 <?php
 
+use App\Models\Team;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
-
 
 //user routes
 Route::get('/', [UserController::class, 'index']);
@@ -27,6 +28,15 @@ Route::get('/user/changepassword', [UserController::class, 'userChangePassword']
 require __DIR__.'/auth.php';
 
 //admin routes
+Route::middleware(['auth','roles:admin'])->group(function(){
+Route::get('all/team',[TeamController::class,'AllTeam'])->name('all.team');
+Route::get('add/team',[TeamController::class,'AddTeam'])->name('add.team');
+Route::post('team/store',[TeamController::class,'TeamStore'])->name('team.store');
+Route::get('team/edit/{id}',[TeamController::class,'TeamEdit'])->name('team.edit');
+Route::post('team/update/{id}',[TeamController::class,'TeamUpdate'])->name('team.update');
+Route::get('team/update/{id}',[TeamController::class,'TeamDelete'])->name('team.delete');
+});
+
 
 Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard')
 ->middleware('auth')
