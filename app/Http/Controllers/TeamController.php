@@ -6,6 +6,7 @@ use App\Models\Team;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
+use App\Models\bookArea;
 
 class TeamController extends Controller
 {
@@ -85,8 +86,6 @@ class TeamController extends Controller
     return redirect()->route('all.team')->with($notification);
     }
 
-
-
     public function TeamDelete($id){
         $team=Team::find($id);
         $team->delete();
@@ -97,6 +96,50 @@ class TeamController extends Controller
         'alert-type'=>'success'
     );
     return redirect()->route('all.team')->with($notification);
+    }
+
+
+    // books area methods
+    public function BookArea(){
+        $book=BookArea::find(1);
+        return view('backend.book_area.all_book_areas',compact('book'));
+    }
+
+    public function BookAreaUpdate(Request $request){
+        $book_id=$request->id;
+        $book_id=BookArea::find($book_id);
+        $book_id->short_title=$request->short_title;
+        $book_id->main_title=$request->main_title;
+        $book_id->short_description	=$request->short_description;
+        $book_id->link_url=$request->link_url;
+
+        if($request->hasFile('image')){
+            $image=$request->image;
+            $image_name=time().'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(1000,1000)->save('upload/book_images/'.$image_name);
+            $request->image->move('upload/book_images',$image_name);
+            $book_id->image=$image_name;
+            $book_id->save();
+
+        $notification=array(
+            'message'=>'Book Area Updated Successfully',
+            'alert-type'=>'success'
+        );
+        return redirect()->route('book.area')->with($notification);
+
+     }else{
+        $book_id->short_title=$request->short_title;
+        $book_id->main_title=$request->main_title;
+        $book_id->short_description	=$request->short_description;
+        $book_id->link_url=$request->link_url;
+        $book_id->save();
+     }
+
+     $notification=array(
+        'message'=>'Book Area Updated Successfully without image',
+        'alert-type'=>'success'
+    );
+    return redirect()->route('book.area')->with($notification);
     }
 
 }

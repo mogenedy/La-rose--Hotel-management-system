@@ -33,7 +33,7 @@ class AdminController extends Controller
     }
 
     public function AdminProfileStore(Request $request){
-        $id=Auth::user()->id;//check our uer is logged or not
+        $id=Auth::user()->id;
         $data=User::find($id);
         $data->name=$request->name;
         $data->email= $request->email;
@@ -58,7 +58,7 @@ class AdminController extends Controller
     }
 
     public function AdminPasswordChange(){
-        $id=Auth::user()->id; //check our uer is logged or not
+        $id=Auth::user()->id;
         $ProfileData=User::find($id); //get user data
         return view('admin.admin_password_change',compact('ProfileData')); //pass data to view
     }

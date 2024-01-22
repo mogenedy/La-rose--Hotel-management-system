@@ -32,6 +32,30 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Book Area</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('book.area')}}"><i class='bx bx-radio-circle'></i>Add Book Area</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Manage room</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('room.type.list')}}"><i class='bx bx-radio-circle'></i>Room Type List</a>
+                </li>
+            </ul>
+        </li>
+
 
         <li class="menu-label">UI Elements</li>
 

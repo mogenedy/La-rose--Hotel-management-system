@@ -9,14 +9,14 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
 
-                    <a href="{{ route('add.team') }}" class="btn btn-outline-primary px-5 radius-30"> Add Team</a>
+                    <a href="{{ route('add.room.type') }}" class="btn btn-outline-primary px-5 radius-30"> Add room type</a>
                 </ol>
             </nav>
         </div>
 
     </div>
     <!--end breadcrumb-->
-    <h6 class="mb-0 text-uppercase">All Team</h6>
+    <h6 class="mb-0 text-uppercase">Room type list</h6>
     <hr/>
     <div class="card">
         <div class="card-body">
@@ -27,22 +27,27 @@
                             <th>Sl</th>
                             <th>Image</th>
                             <th>Name</th>
-                            <th>Postion</th>
-                            <th>Facebook</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                       @foreach ($team as $key=> $item )
+                       @foreach ($roomptypelist as $key=> $item )
+
+                    @php
+                    $rooms = App\Models\Room::where('roomtype_id',$item->id)->get();
+                    @endphp
                         <tr>
                             <td>{{ $key+1 }}</td>
-                            <td><img src="{{ asset('upload/team_images/' . $item->image) }}" alt="" style="width:70px; height:40px;"></td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->position }}</td>
-                            <td>{{ $item->facebook }}</td>
                             <td>
-    <a href="{{route('team.edit',$item->id)}}" class="btn btn-warning px-3 radius-30"> Edit</a>
-    <a href="{{route('team.delete',$item->id)}}" class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
+                            <img src="{{ (!empty($item->room->image)) ? (asset('upload/room_images/'.$item->room->image)) : (asset('upload/no_image.jpg')) }}" alt="" style="width:70px; height:40px;">
+                            </td>
+                            <td>{{ $item->name }}</td>
+                            <td>
+                                @foreach($rooms as $roo)
+                        <a href="{{route('edit.room',$roo->id)}}" class="btn btn-warning px-3 radius-30"> Edit</a>
+                       <a href="" class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
+                                @endforeach
+
 
                             </td>
                         </tr>

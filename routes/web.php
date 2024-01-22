@@ -2,10 +2,12 @@
 
 use App\Models\Team;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoomTypeController;
 
 //user routes
 Route::get('/', [UserController::class, 'index']);
@@ -27,7 +29,7 @@ Route::get('/user/changepassword', [UserController::class, 'userChangePassword']
 
 require __DIR__.'/auth.php';
 
-//admin routes
+//admin(team) routes
 Route::middleware(['auth','roles:admin'])->group(function(){
 Route::get('all/team',[TeamController::class,'AllTeam'])->name('all.team');
 Route::get('add/team',[TeamController::class,'AddTeam'])->name('add.team');
@@ -36,7 +38,25 @@ Route::get('team/edit/{id}',[TeamController::class,'TeamEdit'])->name('team.edit
 Route::post('team/update/{id}',[TeamController::class,'TeamUpdate'])->name('team.update');
 Route::get('team/update/{id}',[TeamController::class,'TeamDelete'])->name('team.delete');
 });
+//admin(book-area) routes
+Route::middleware(['auth','roles:admin'])->group(function(){
+    Route::get('book/area',[TeamController::class,'BookArea'])->name('book.area');
+    Route::post('book/area/update',[TeamController::class,'BookAreaUpdate'])->name('book.area.update');
 
+    });
+
+//admin(room type) routes
+Route::middleware(['auth','roles:admin'])->group(function(){
+    Route::get('room/type/list',[RoomTypeController::class,'RoomTypeList'])->name('room.type.list');
+    Route::get('add/room/type',[RoomTypeController::class,'AddRoomType'])->name('add.room.type');
+    Route::post('room/type/store/{id}',[RoomTypeController::class,'StoreRoomType'])->name('room.type.store');
+    });
+
+    //admin(room) routes
+Route::middleware(['auth','roles:admin'])->group(function(){
+    Route::get('room/edit/{id}',[RoomController::class,'RoomEdit'])->name('edit.room');
+
+    });
 
 Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard')
 ->middleware('auth')

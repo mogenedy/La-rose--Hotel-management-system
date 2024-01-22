@@ -43,7 +43,7 @@
 		<!--end header -->
 		<!--start page wrapper -->
 		<div class="page-wrapper">
-            @yield('admin');
+            @yield('admin')
         </div>
 		<!--end page wrapper -->
 		<!--start overlay-->
@@ -220,6 +220,8 @@
 	<script>
 		new PerfectScrollbar(".app-container")
 	</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('backend/assets/js/code.js') }}"></script>
     {{-- toaster --}}
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -263,8 +265,17 @@
         } );
 
         table.buttons().container()
-            .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
+            .appendTo( '#example2_wrapper .col-md-6:eq(0)');
     } );
+</script>
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+   tinymce.init({
+     selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
+     plugins: 'powerpaste advcode table lists checklist',
+     toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
+   });
 </script>
 </body>
 
