@@ -105,6 +105,8 @@ class TeamController extends Controller
         return view('backend.book_area.all_book_areas',compact('book'));
     }
 
+
+    
     public function BookAreaUpdate(Request $request){
         $book_id=$request->id;
         $book_id=BookArea::find($book_id);

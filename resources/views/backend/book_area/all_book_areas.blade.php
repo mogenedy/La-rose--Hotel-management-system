@@ -1,5 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+
     <div class="page-content">
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
             <div class="breadcrumb-title pe-3">Update Book Area</div>
@@ -8,7 +9,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Update Book Area</li>
+                        <li class="breadcrumb-item active" aria-current="page">update Book</li>
                     </ol>
                 </nav>
             </div>
@@ -41,7 +42,6 @@
             </div>
             <div class="col-sm-9 text-secondary">
                 <input type="text" class="form-control" name="main_title" value="{{$book->main_title}}" />
-
             </div>
         </div>
         <div class="row mb-3">
@@ -76,9 +76,8 @@
                 <h6 class="mb-0"></h6>
             </div>
             <div class="col-sm-9 text-secondary">
-                <img id="showImage"
-                src="{{ asset('upload/book_images/'.$book->image) }}"
-                alt="Admin" class="rounded-circle p-1 bg-primary" width="80">
+                 
+                <img id="showImage"  src="{{ $book->image ? asset('upload/book_images/'.$book->image) : url('upload/no_image.jpg') }}" alt="Book Image">
             </div>
         </div>
         <div class="row">

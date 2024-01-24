@@ -35,15 +35,15 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
-                                    <img src="{{ (!empty($ProfileData->photo)) ?
-                                    url('upload/admin_images/' . $ProfileData->photo) : url('upload/no_image.jpg') }}"
+                                    <img src="{{ (!empty($profileData->photo)) ?
+                                    url('upload/admin_images/'.$profileData->photo) : url('upload/no_image.jpg') }}"
                                         alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
 
 
 
                                     <div class="mt-3">
-                                        <h4>{{ $ProfileData->name }}</h4>
-                                        <p class="text-secondary mb-1">{{ $ProfileData->email }}</p>
+                                        <h4>{{ $profileData->name }}</h4>
+                                        <p class="text-secondary mb-1">{{ $profileData->email }}</p>
                                     </div>
                                 </div>
                                 <hr class="my-4" />
@@ -109,7 +109,7 @@
             </div>
             <div class="col-sm-9 text-secondary">
         <input type="text" class="form-control" name="name"
-                    value="{{ $ProfileData->name }}" />
+                    value="{{ $profileData->name }}" />
             </div>
         </div>
         <div class="row mb-3">
@@ -118,7 +118,7 @@
             </div>
             <div class="col-sm-9 text-secondary">
                 <input type="text" class="form-control" name="email"
-                    value="{{ $ProfileData->email }}" />
+                    value="{{ $profileData->email }}" />
             </div>
         </div>
         <div class="row mb-3">
@@ -127,7 +127,7 @@
             </div>
             <div class="col-sm-9 text-secondary">
                 <input type="text" name="phone" class="form-control"
-                    value="{{ $ProfileData->Phone }}" />
+                    value="{{ $profileData->Phone }}" />
             </div>
         </div>
         <div class="row mb-3">
@@ -136,7 +136,7 @@
             </div>
             <div class="col-sm-9 text-secondary">
                 <input type="text" name="address" class="form-control"
-                    value="{{ $ProfileData->address }}" />
+                    value="{{ $profileData->address }}" />
             </div>
         </div>
 
@@ -156,7 +156,7 @@
             </div>
             <div class="col-sm-9 text-secondary">
                 <img id="showImage"
-                    src="{{(!empty($ProfileData->photo)) ? url('upload/admin_images/' . $ProfileData->photo) : url('upload/no_image.jpg') }}"
+                    src="{{(!empty($ProfileData->photo)) ? url('upload/admin_images/' . $profileData->photo) : url('upload/no_image.jpg') }}"
                     alt="Admin" class="rounded-circle p-1 bg-primary" width="80">
             </div>
         </div>

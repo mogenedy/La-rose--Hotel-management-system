@@ -39,7 +39,7 @@
                 <div class="menu-title">Book Area</div>
             </a>
             <ul>
-                <li> <a href="{{route('book.area')}}"><i class='bx bx-radio-circle'></i>Add Book Area</a>
+                <li> <a href="{{route('book.area')}}"><i class='bx bx-radio-circle'></i>update book area</a>
                 </li>
             </ul>
         </li>

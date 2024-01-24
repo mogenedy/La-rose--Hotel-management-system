@@ -49,7 +49,7 @@ Route::middleware(['auth','roles:admin'])->group(function(){
 Route::middleware(['auth','roles:admin'])->group(function(){
     Route::get('room/type/list',[RoomTypeController::class,'RoomTypeList'])->name('room.type.list');
     Route::get('add/room/type',[RoomTypeController::class,'AddRoomType'])->name('add.room.type');
-    Route::post('room/type/store/{id}',[RoomTypeController::class,'StoreRoomType'])->name('room.type.store');
+    Route::post('room/type/store',[RoomTypeController::class,'StoreRoomType'])->name('room.type.store');
     });
 
     //admin(room) routes
