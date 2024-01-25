@@ -157,7 +157,7 @@ return view('backend.allroom.rooms.edit_rooms',compact('editData','basic_facilit
     }//End Method 
 
    public function RoomNumberEdit($id){
-// ljjj
+
        $editData = RoomNumber::find($id);
        return view('backend.allroom.rooms.edit_room_number',compact('editData'));
 
