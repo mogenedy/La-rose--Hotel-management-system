@@ -154,6 +154,7 @@
             <div class="col-sm-3">
                 <h6 class="mb-0"></h6>
             </div>
+            
             <div class="col-sm-9 text-secondary">
                 <img id="showImage"
                     src="{{(!empty($ProfileData->photo)) ? url('upload/admin_images/' . $profileData->photo) : url('upload/no_image.jpg') }}"
