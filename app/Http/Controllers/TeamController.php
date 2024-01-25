@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use App\Models\bookArea;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Intervention\Image\Facades\Image;
-use App\Models\bookArea;
 
 class TeamController extends Controller
 {
@@ -25,7 +24,6 @@ class TeamController extends Controller
         ]);
         $image=$request->image;
        $image_name=time().'.'.$image->getClientOriginalExtension();
-       Image::make($image)->resize(550,670)->save('upload/team_images/'.$image_name);
        $request->image->move('upload/team_images', $image_name);
 
         Team::insert([
@@ -61,7 +59,6 @@ class TeamController extends Controller
         if($request->hasFile('image')){
             $image=$request->image;
             $image_name=time().'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(550,670)->save('upload/team_images/'.$image_name);
             $request->image->move('upload/team_images', $image_name);
             $team->image=$image_name;
             $team->save();
@@ -105,6 +102,8 @@ class TeamController extends Controller
         return view('backend.book_area.all_book_areas',compact('book'));
     }
 
+
+    
     public function BookAreaUpdate(Request $request){
         $book_id=$request->id;
         $book_id=BookArea::find($book_id);
@@ -116,7 +115,6 @@ class TeamController extends Controller
         if($request->hasFile('image')){
             $image=$request->image;
             $image_name=time().'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(1000,1000)->save('upload/book_images/'.$image_name);
             $request->image->move('upload/book_images',$image_name);
             $book_id->image=$image_name;
             $book_id->save();

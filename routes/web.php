@@ -49,14 +49,20 @@ Route::middleware(['auth','roles:admin'])->group(function(){
 Route::middleware(['auth','roles:admin'])->group(function(){
     Route::get('room/type/list',[RoomTypeController::class,'RoomTypeList'])->name('room.type.list');
     Route::get('add/room/type',[RoomTypeController::class,'AddRoomType'])->name('add.room.type');
-    Route::post('room/type/store/{id}',[RoomTypeController::class,'StoreRoomType'])->name('room.type.store');
+    Route::post('room/type/store',[RoomTypeController::class,'StoreRoomType'])->name('room.type.store');
     });
 
     //admin(room) routes
 Route::middleware(['auth','roles:admin'])->group(function(){
     Route::get('room/edit/{id}',[RoomController::class,'RoomEdit'])->name('edit.room');
+    Route::post('/update/room/{id}',[RoomController::class,'UpdateRoom'])->name('update.room');
+    Route::get('/multi/image/delete/{id}', [RoomController::class,'MultiImageDelete'])->name('multi.image.delete');
+
 
     });
+
+
+    //admin(auth) routes
 
 Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard')
 ->middleware('auth')
