@@ -138,6 +138,6 @@ class TeamController extends Controller
         'alert-type'=>'success'
     );
     return redirect()->route('book.area')->with($notification);
-    }
+    }//end method
 
 }
