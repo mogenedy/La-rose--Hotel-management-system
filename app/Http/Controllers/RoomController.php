@@ -16,9 +16,10 @@ class RoomController extends Controller
     public function RoomEdit($id){
         $basic_facility=Facility::where('rooms_id',$id)->get();
         $multiimgs = MultiImage::where('rooms_id',$id)->get();
+        $allroomNo = RoomNumber::where('rooms_id',$id)->get();
         $editData=Room::find($id);
 
-return view('backend.allroom.rooms.edit_rooms',compact('editData','basic_facility','multiimgs'));
+return view('backend.allroom.rooms.edit_rooms',compact('editData','basic_facility','multiimgs','allroomNo'));
     }
 
     public function UpdateRoom(Request $request, $id){
