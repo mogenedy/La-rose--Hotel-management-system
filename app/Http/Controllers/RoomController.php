@@ -155,7 +155,6 @@ return view('backend.allroom.rooms.edit_rooms',compact('editData','basic_facilit
         return redirect()->back()->with($notification); 
 
     }//End Method 
-
    
     
 
