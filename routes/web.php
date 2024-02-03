@@ -29,7 +29,7 @@ Route::get('/user/changepassword', [UserController::class, 'userChangePassword']
 
 require __DIR__.'/auth.php';
 
-//admin(team) routes
+//admin(team) 
 Route::middleware(['auth','roles:admin'])->group(function(){
 Route::get('all/team',[TeamController::class,'AllTeam'])->name('all.team');
 Route::get('add/team',[TeamController::class,'AddTeam'])->name('add.team');
@@ -38,32 +38,36 @@ Route::get('team/edit/{id}',[TeamController::class,'TeamEdit'])->name('team.edit
 Route::post('team/update/{id}',[TeamController::class,'TeamUpdate'])->name('team.update');
 Route::get('team/update/{id}',[TeamController::class,'TeamDelete'])->name('team.delete');
 });
-//admin(book-area) routes
+//admin(book-area) 
 Route::middleware(['auth','roles:admin'])->group(function(){
     Route::get('book/area',[TeamController::class,'BookArea'])->name('book.area');
     Route::post('book/area/update',[TeamController::class,'BookAreaUpdate'])->name('book.area.update');
 
     });
 
-//admin(room type) routes
+//admin(room type) 
 Route::middleware(['auth','roles:admin'])->group(function(){
     Route::get('room/type/list',[RoomTypeController::class,'RoomTypeList'])->name('room.type.list');
     Route::get('add/room/type',[RoomTypeController::class,'AddRoomType'])->name('add.room.type');
     Route::post('room/type/store',[RoomTypeController::class,'StoreRoomType'])->name('room.type.store');
     });
 
-    //admin(room) routes
+    //admin(room) 
 Route::middleware(['auth','roles:admin'])->group(function(){
     Route::get('room/edit/{id}',[RoomController::class,'RoomEdit'])->name('edit.room');
     Route::post('/update/room/{id}',[RoomController::class,'UpdateRoom'])->name('update.room');
     Route::get('/multi/image/delete/{id}', [RoomController::class,'MultiImageDelete'])->name('multi.image.delete');
     Route::post('/store/room/no/{id}', [RoomController::class,'StoreRoomNumber'])->name('store.room.no');
 
+    Route::get('/edit/roomno/{id}', [RoomController::class,'EditRoomNumber'])->name('edit.roomno');
+    Route::post('/update/roomno/{id}', [RoomController::class,'UpdateRoomNumber'])->name('update.roomno');
+    Route::get('/delete/roomno/{id}', [RoomController::class,'DeleteRoomNumber'])->name('delete.roomno');
+    Route::get('/delete/room/{id}', [RoomController::class,'DeleteRoom'])->name('delete.room');
 
     });
 
 
-    //admin(auth) routes
+    //admin(auth) 
 
 Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard')
 ->middleware('auth')

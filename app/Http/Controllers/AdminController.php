@@ -46,7 +46,7 @@ class AdminController extends Controller
     $data->photo=$photo_name;
     $data->save();
 
-// add toaster notifcation
+// adding  toaster notifcations
 
  $notification=array(
     'message'=>'Profile Updated Successfully',
